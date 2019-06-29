@@ -1,3 +1,5 @@
+module.exports = Phrase;
+
 // Reverses a string
 function reverse(string) {
   return Array.from(string).reverse().join("");
@@ -11,8 +13,16 @@ function Phrase(content) {
     return string.toLowerCase();
   }
 
+  // returns content processed for palindrome testing
   this.processedContent = function processedContent() {
-    return this.processor(this.content);
+    return this.letters().toLowerCase();
+  }
+  
+  // returns just the letters in the content
+  // For exaample:
+  //  new Phrase("Hello, World!").letters() === "HelloWorld"
+  this.letters = function letters() {
+    return (this.content.match(/[a-z]/gi) || []).join("");
   }
   
   // Returns true for a palindrome, false otherwise
